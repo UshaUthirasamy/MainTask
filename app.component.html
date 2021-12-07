@@ -1,0 +1,59 @@
+<div class="heading">
+  SANDHAI
+  <hr width="8%">
+</div>
+<div class="searchbar">
+  <input type="text" placeholder="Search by product name" #input>
+  <button (click)="onSubmit(input.value)">Submit</button>
+</div>
+<div class="newdiv">
+  <div class="container1">
+    <div class="wrapper">
+      <div *ngFor="let item of products;let index = index;">
+        <div class="product container3">
+          <ul><img class="productImage" src="{{item.image}}" alt="Picture"></ul>
+          <button class="floating" (click)="Remove(index)">Remove</button>
+          <ul>NAME : {{item.name}}</ul>
+          <ul>PRIZE : {{item.prize}}</ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button *ngIf="isOpen === 0" class="addButton" (click)="Addproduct()">Add Product To Sell</button>
+  <img *ngIf="isOpen === 0" class="image" src="https://www.seekclip.com/wp-content/uploads/2018/06/web-1-810x445.jpg" height="500px" width="600px">
+  <div *ngIf="isOpen === 1">
+    <div class="container2">
+      <div class="new-form">
+        <input type="text" #image> : Image
+      </div><br><br>
+      <div class="new-form">
+        <input type="text" #name> : Name
+      </div><br><br>
+      <div class="new-form">
+        <input type="text" #type> : Type(animal/ thing/ vegetable/ fruit)
+      </div><br><br>
+      <div class="new-form">
+        <input type="text" #prize> : Prize
+      </div><br><br>
+      <div class="new-form">
+        <input type="text" #owner> : Owner
+      </div><br><br>
+      <div class="new-form">
+        <input type="text" #address> : Address
+      </div><br><br>
+      <div class="new-form">
+        <input type="text" #phone> : Phone number
+      </div><br><br>
+      <div class="new-form">
+        <input type="text" #password> : Password(Should Enter while deleting your post)
+        <p style="color: red;font-size: 100%;">{{ message }}</p>
+      </div><br><br>
+      <div>
+        <button
+          (click)="addProduct(image.value,name.value,type.value,prize.value,owner.value,address.value,phone.value,password.value)">Submit</button><span>
+            <button (click)="closeForm()">Cancel</button>
+          </span>
+      </div>
+    </div>
+  </div>
+</div>
