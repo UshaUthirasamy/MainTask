@@ -1,0 +1,86 @@
+<div class="heading">
+  SANDHAI
+  <hr width="8%">
+</div>
+<div class="searchbar">
+  <input type="text" placeholder="Search by product name" #input>
+  <button (click)="onSubmit(input.value)">Submit</button>
+</div>
+<div class="newdiv">
+  <div class="container1">
+    <div class="wrapper">
+      <div *ngFor="let item of products;let index = index;">
+        <div class="product container3">
+          <ul><img class="productImage" src="{{item.image}}" alt="Picture" (click)="viewProduct(item)"></ul>
+          <button class="floating" (click)="Remove(index)">Remove</button>
+          <ul>NAME : {{item.name}}</ul>
+          <ul>PRIZE : {{item.prize}}</ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button *ngIf="isOpen === 0" class="addButton" (click)="Addproduct()">Add Product To Sell</button>
+  <img *ngIf="isOpen === 0" class="image" src="https://www.seekclip.com/wp-content/uploads/2018/06/web-1-810x445.jpg" height="500px" width="600px">
+  <div *ngIf="isOpen === 1">
+    <div class="container2">
+      <div class="new-form">
+        <input type="text" #image> : Image
+      </div><br><br>
+      <div class="new-form">
+        <input type="text" #name> : Product Name
+      </div><br><br>
+      <div class="new-form">
+        <input type="text" #type> : Type(animal/ thing/ vegetable/ fruit)
+      </div><br><br>
+      <div class="new-form">
+        <input type="text" #prize> : Prize
+      </div><br><br>
+      <div class="new-form">
+        <input type="text" #owner> : Owner
+      </div><br><br>
+      <div class="new-form">
+        <input type="text" #address> : Address
+      </div><br><br>
+      <div class="new-form">
+        <input type="text" #phone> : Phone number
+      </div><br><br>
+      <div class="new-form">
+        <input type="text" #password> : Password(Should Enter while deleting your post)
+        <p style="color: red;font-size: 100%;">{{ message }}</p>
+      </div><br><br>
+      <div>
+        <button
+          (click)="addProduct(image.value,name.value,type.value,prize.value,owner.value,address.value,phone.value,password.value)">Submit</button><span>
+            <button (click)="closeForm()">Cancel</button>
+          </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Section -->
+<div class="modal" *ngIf="remove === 1" >
+  <div class="modal-content">
+    <div><h2>ENTER PASSWORD</h2></div>
+    <div>
+      <input type="text" class="inputOfModal" placeholder="Password" #value>
+    </div><br>
+    <div>
+      <button class="buttonOfModal" (click)="Modal(value.value)">Submit</button>
+    </div>
+  </div>
+</div>
+
+<!--Modal for Product View-->
+<div class="Pmodal" *ngIf="View===1">
+  <div class="Pmodal-content">
+    <img src = "{{view[0].image}}" height="300px" width="300px" >
+    <h2>Name : {{ view[0].name }}</h2>
+    <h2>Type : {{ view[0].type}}</h2>
+    <h2>Prize : {{ view[0].prize}}</h2>
+    <h2>Owner : {{ view[0].owner}}</h2>
+    <h2>Address : {{ view[0].address}}</h2>
+    <h2>Phone Number : {{ view[0].phone_number}}</h2>
+    <button (click)="closeView()">Close</button>
+  </div>
+</div>
